@@ -1,0 +1,37 @@
+Rating :
+response.xpath('//div[@class="wrap"]/div[@class="rating reviewItemInline"]/span/@class').extract_first()
+
+Root :
+response.xpath('//div[@class="reviewSelector"]/div[@class="review hsx_review is-multiline is-mobile inlineReviewUpdate provider0"]')
+
+BLm selesai = 
+
+response.xpath('//div[@class="reviewSelector"]/div[@class="review hsx_review is-multiline is-mobile inlineReviewUpdate provider0"]/div[@class="leftMemberInfo"]/div[@class="prw_rup prw_reviews_member_info_hsx"]/div[@class="member_info"]/div[@class="memberOverlayLink"]/div[]')
+
+User :
+
+response.xpath('//div[@class="reviewSelector"]/div[@class="review hsx_review is-multiline is-mobile inlineReviewUpdate provider0"]/div[@class="leftMemberInfo"]/div[@class="prw_rup prw_reviews_member_info_hsx"]/div[@class="member_info"]/div[@class="memberOverlayLink"]/div["username mo"]/span/text()').extract_first()
+
+
+Isi :
+
+response.xpath('//div[@class="reviewSelector"]/div[@class="review hsx_review is-multiline is-mobile inlineReviewUpdate provider0"]/div[@class="mainContent"]/div[@class="innerBubble"]/div[@class="wrap"]/div[@class="prw_rup prw_reviews_text_summary_hsx"]/div[@class="entry"]/p/text()').extract()
+
+
+Nama Tempat :
+response.xpath('//div[@class="surContent"]/a/text()').extract_first()
+
+
+Isi Fix :
+
+box.xpath('.//div[@class="mainContent"]/div[@class="innerBubble"]/div[@class="wrap"]/div[@class="prw_rup prw_reviews_text_summary_hsx"]/div[@class="entry"]/p/text()').extract()
+
+
+Rating Fix :
+
+box.xpath('.//div[@class="mainContent"]/div[@class="innerBubble"]/div[@class="wrap"]/div[@class="rating reviewItemInline"]/span/@class').extract_first()
+
+
+User Fix :
+
+box.xpath('.//div[@class="leftMemberInfo"]/div[@class="prw_rup prw_reviews_member_info_hsx"]/div[@class="member_info"]/div[@class="memberOverlayLink"]/div["username mo"]/span/text()').extract_first()
