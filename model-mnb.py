@@ -27,7 +27,8 @@ stop_factory = StopWordRemoverFactory()
 stopword = stop_factory.create_stop_word_remover()
 
 data = pd.read_csv('hasil11.csv')
-data = data[['Label','Isi']]
+data = data[['Label', 'Isi']]
+
 
 def convert(polarity):
     if polarity == 'Positif':
@@ -36,10 +37,12 @@ def convert(polarity):
         return 0
     else:
         return -1
-    
+
+
 def clean_text(text):
-    text = re.sub(r'[^a-zA-Z]', ' ', str(text)) #hanya mengijinkan huruf a - z dan A - Z
-    text = re.sub(r'\b\w{1,2}\b', '', text) #menghilangkan 2 kata
+    # hanya mengijinkan huruf a - z dan A - Z
+    text = re.sub(r'[^a-zA-Z]', ' ', str(text))
+    text = re.sub(r'\b\w{1,2}\b', '', text)  # menghilangkan 2 kata
     text = re.sub(r'\s\s+', ' ', text)
     text = re.sub(r"yng", "yang", text)
     text = re.sub(r"yg", "yang", text)
@@ -65,13 +68,16 @@ bow_transformer = CountVectorizer(analyzer=clean_text).fit(X)
 
 X = bow_transformer.transform(X)
 
+print(X.toarray())
+
 print('Shape of Sparse Matrix: ', X.shape)
 print('Amount of Non-Zero occurrences: ', X.nnz)
 # Percentage of non-zero values
 density = (100.0 * X.nnz / (X.shape[0] * X.shape[1]))
 print('Density: {}'.format((density)))
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, shuffle=False)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, shuffle=False)
 
 nb = MultinomialNB()
 nb.fit(X_train, y_train)
@@ -80,3 +86,5 @@ preds = nb.predict(X_test)
 print(classification_report(y_test, preds))
 print(accuracy_score(y_test, preds))
 
+#menghitung seberapa banyak kata yang muncul pada satu kalimat dalam sebuah array dari kalimat dalam hal ini yaitu isi review
+#menghitung kata - kata yang sering muncul dalam kesuluruhan isi review dan memetakannya ke dalam entuk array 
